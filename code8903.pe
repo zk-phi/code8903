@@ -196,12 +196,26 @@ if (reuse_roundedmp != "yes")
 
 endif
 
-# ---- Merge Fonts
+# //// Merge Fonts ////
+
+# ---- Copy some glyphs from RoundedM+ to JISZ8903
+
+Print("code8903: Copying some glyphs ...")
+
+Open("tmp_rounded-mplus-1m-regular.ttf")
+SelectSingletons(0u005b, 0u005d, 0u007b, 0u007d)
+Copy()
 
 Open("tmp_JISZ8903-Medium.ttf")
+SelectSingletons(0u005b, 0u005d, 0u007b, 0u007d)
+Paste()
+
+# ---- Merge undefined glyphs from RoundedM+ into JISZ8903
 
 Print("code8903: Merging ...")
 MergeFonts("tmp_rounded-mplus-1m-regular.ttf")
+
+# ---- Font generation
 
 Print("code8903: Generating the font ...")
 SetFontNames("code8903", "code8903", "code8903")
