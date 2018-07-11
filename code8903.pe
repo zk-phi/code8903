@@ -2,7 +2,7 @@
 
 # ---- Configurations
 
-# weight                 = 10
+weight                 = 10
 upper_rescale          = 85
 upper_mw_extra_rescale = 90
 lower_mw_rescale       = 85
@@ -20,6 +20,18 @@ one_kerning_offset      = -25
 
 roundedmp_rescale_ratio   = 102
 roundedmp_baseline_offset = 20
+
+# ---- Command line args
+
+use_expandstroke = "yes"
+
+i = 1
+while (i < $argc)
+  if ($argv[i] == "--no-expandstroke")
+    use_expandstroke = "no"
+  endif
+  i = i + 1
+endloop
 
 # ---- Reencode
 
@@ -49,11 +61,13 @@ Scale(amp_rescale, 100, 0, 0)
 SelectSingletons(0u0040) # @
 Scale(at_rescale, 100, 0, 0)
 
-# # ---- Weight
-#
-# Print("JISZ8903: Tweaking weight ...")
-# SelectWorthOutputting()
-# ExpandStroke(weight, 0, 0, 0, 1)
+# ---- Weight
+
+if (use_expandstroke == "yes")
+  Print("JISZ8903: Tweaking weight ...")
+  SelectWorthOutputting()
+  ExpandStroke(weight, 0, 0, 0, 1)
+endif
 
 # ---- Monospacify
 
@@ -129,8 +143,10 @@ Print("RoundedM+: Adjusting sacle and baseline ...")
 Scale(roundedmp_rescale_ratio)
 Move(0, roundedmp_baseline_offset)
 
-# Print("RoundedM+: Adjusting weight ...")
-# ExpandStroke(weight, 0, 0, 0, 1)
+if (use_expandstroke == "yes")
+  Print("RoundedM+: Adjusting weight ...")
+  ExpandStroke(weight, 0, 0, 0, 1)
+endif
 
 Print("RoundedM+: Adjusting width ...")
 SetWidth(fullwidth)
