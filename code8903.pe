@@ -88,18 +88,17 @@ if (reuse_jisz8903 != "yes")
   # monospacify
   Select(0u0020, 0u007E)          # ASCII
   SetWidth(halfwidth)
+  CenterInWidth()
 
   # monospacify
   SelectWorthOutputting()
   SelectFewer(0u0020, 0u007E)
   SetWidth(fullwidth)
+  CenterInWidth()
 
   # ---- Positioning
 
   Print("JISZ8903: Positioning glyphs ...")
-
-  SelectWorthOutputting()
-  CenterInWidth()
 
   SelectSingletons(0u3001, 0u3002) # "、。"
   Move(ja_punct_kerning_offset, 0)
@@ -172,6 +171,13 @@ if (reuse_roundedmp != "yes")
   # ---- Monospacify
 
   Print("RoundedM+: Monospacifying ...")
+
+  Select(0u0020, 0u007E)          # ASCII
+  SetWidth(halfwidth)
+  CenterInWidth()
+
+  SelectWorthOutputting()
+  SelectFewer(0u0020, 0u007E)
   SetWidth(fullwidth)
   CenterInWidth()
 
