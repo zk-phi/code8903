@@ -4,6 +4,7 @@
 
 weight                 = 10
 upper_rescale          = 85
+upper_l_extra_rescale  = 95
 upper_mw_extra_rescale = 90
 lower_mw_rescale       = 85
 amp_rescale            = 85
@@ -57,6 +58,9 @@ if (reuse_jisz8903 != "yes")
   Select(0u0030, 0u0039, 0u0041, 0u005A) # 0-9, A-Z
   SelectFewer(0u0049)                    # I
   Scale(upper_rescale, 100, 0, 0)
+
+  Select(0u004C) # L
+  Scale(upper_l_extra_rescale, 100, 0, 0)
 
   Select(0u004D, 0u0057) # M, W
   Scale(upper_mw_extra_rescale, 100, 0, 0)
