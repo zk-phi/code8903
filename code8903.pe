@@ -2,7 +2,7 @@
 
 # //// Configurations ////
 
-weight                 = 10
+weight                 = 12
 upper_rescale          = 85
 upper_l_extra_rescale  = 95
 upper_mw_extra_rescale = 90
