@@ -10,6 +10,7 @@ lower_mw_rescale       = 85
 amp_rescale            = 85
 at_rescale             = 70
 perc_rescale           = 80
+dollar_rescale         = 80
 halfwidth              = 625
 fullwidth              = 1250
 
@@ -70,6 +71,9 @@ if (reuse_jisz8903 != "yes")
 
   SelectSingletons(0u0025) # %
   Scale(perc_rescale, 100, 0, 0)
+
+  SelectSingletons(0u0024) # $
+  Scale(dollar_rescale, 100, 0, 0)
 
   SelectSingletons(0u0026) # &
   Scale(amp_rescale, 100, 0, 0)
