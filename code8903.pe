@@ -27,6 +27,7 @@ roundedmp_baseline_offset = 20
 # //// Parse command line args ////
 
 use_expandstroke = "yes"
+use_autohint     = "yes"
 reuse_jisz8903   = "no"
 reuse_roundedmp  = "no"
 
@@ -34,6 +35,9 @@ i = 1
 while (i < $argc)
   if ($argv[i] == "--no-expandstroke")
     use_expandstroke = "no"
+  endif
+  if ($argv[i] == "--no-autohint")
+    use_autohint = "no"
   endif
   if ($argv[i] == "--reuse-jisz8903")
     reuse_jisz8903 = "yes"
@@ -134,9 +138,11 @@ if (reuse_jisz8903 != "yes")
 
   # ---- Hinting
 
-  Print("JISZ8903: Hinting ...")
-  SelectHintingNeeded()
-  AutoHint()
+  if (use_autohint == "yes")
+    Print("JISZ8903: Hinting ...")
+    SelectHintingNeeded()
+    AutoHint()
+  endif
 
   # ---- Font Generation
 
@@ -195,9 +201,11 @@ if (reuse_roundedmp != "yes")
 
   # ---- Hinting
 
-  Print("RoundedM+: Hinting ...")
-  SelectHintingNeeded()
-  AutoHint()
+  if (use_autohint == "yes")
+    Print("RoundedM+: Hinting ...")
+    SelectHintingNeeded()
+    AutoHint()
+  endif
 
   # ---- Font generation
 
