@@ -27,7 +27,7 @@ roundedmp_baseline_offset = 20
 # //// Parse command line args ////
 
 use_expandstroke = "yes"
-use_autohint     = "yes"
+use_autohint     = "no"
 reuse_jisz8903   = "no"
 reuse_roundedmp  = "no"
 
@@ -36,8 +36,8 @@ while (i < $argc)
   if ($argv[i] == "--no-expandstroke")
     use_expandstroke = "no"
   endif
-  if ($argv[i] == "--no-autohint")
-    use_autohint = "no"
+  if ($argv[i] == "--autohint")
+    use_autohint = "yes"
   endif
   if ($argv[i] == "--reuse-jisz8903")
     reuse_jisz8903 = "yes"
@@ -209,7 +209,7 @@ if (reuse_roundedmp != "yes")
 
   # ---- Font generation
 
-  Print("JISZ8903: Generating temporary font ...")
+  Print("RoundedM+: Generating temporary font ...")
   Generate("tmp_rounded-mplus-1m-regular.ttf")
 
   Close()
