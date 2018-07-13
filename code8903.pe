@@ -236,6 +236,8 @@ endif
 # ---- Font generation
 
 Print("code8903: Generating the font ...")
+SelectWorthOutputting()
+RoundToInt()
 SetFontNames("code8903", "code8903", "code8903")
 SetUniqueID(0)
 Generate("code8903-Medium.ttf")
