@@ -24,9 +24,13 @@ Monaco (参考)
 機械彫刻用標準文字のライセンスの都合で、再配布に許諾が必要なため、とり
 あえず生成スクリプトだけ公開しています。
 
+ヒンティングに =fontforge= 組み込みの機能を使う方法と、 =ttfautohint=
+という外部ツールを使う方法があります。 =ttfautohint= の方が高速でやや
+クオリティも高い気がするので、自分はそちらを使っています。
+
 生成方法：
 
-1. =fontforge=, =ttfautohint= をインストール
+1. =fontforge=, =ttfautohint= (任意) をインストール
 
    Mac の場合は Homebrew で入ります。
 
@@ -36,8 +40,8 @@ Monaco (参考)
    トール＆ PATH を通すか、 Bash on Windows から =apt-get= でも入ると
    思います (試せていないので、ごめんなさい)。
 
-   ※ =ttfautohint= は必須ではありませんが、フォントサイズを落として使
-   用した場合の表示のクリアさに影響するのでインストール推奨です
+   ヒンティングに =ttfautohint= を使わない場合は、 =fontforge= のみの
+   インストールでかまいません。
 
 2. 機械彫刻用標準文字フォントをダウンロード
 
@@ -56,21 +60,20 @@ Monaco (参考)
    成功すると =code8903-Medium.ttf= (と中間生成物 =tmp_*= ... こちらは
    削除して構いません) が生成されます。
 
-   ※ =ttfautohint= を使わない場合、上のコマンドに =--autohint= オプショ
-   ンを追加して実行してください（代わりに =fontforge= 組み込みの
-   =AutoHint= 機能を使います）。
+   =ttfautohint= を使わない場合、これで完成になります。
 
-5. ヒンティング情報を生成
+   ※ 後で =ttfautohint= でヒンティングを行う場合、 =fontforge= による
+   ヒンティングはスキップすることもできます (その方が高速です)
 
-   =ttfautohint= を使ってヒンティング情報を生成します。
+   : fontforge code8903.pe --no-autohint
+
+5. =ttfautohint= でヒンティング情報を生成 (任意)
+
+   =ttfautohint= でヒンティングを行います。
 
    : ttfautohint --no-info code8903-Medium.ttf code8903-Medium-Hinted.ttf
 
    成功すると最終成果物 =code8903-Medium-Hinted.ttf= が生成されます。
-
-   ※手順 4. ですでに =fontforge= の機能を使ってヒンティング情報を生成
-   している場合、この手順は不要で、 =code8903-Medium.ttf= が最終成果物
-   になります。
 
 * アップデート
 
