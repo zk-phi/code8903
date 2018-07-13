@@ -136,14 +136,6 @@ if (reuse_jisz8903 != "yes")
   Move(one_kerning_offset, 0)
   SetWidth(halfwidth)
 
-  # ---- Hinting
-
-  if (use_autohint == "yes")
-    Print("JISZ8903: Hinting ...")
-    SelectHintingNeeded()
-    AutoHint()
-  endif
-
   # ---- Font Generation
 
   Print("JISZ8903: Generating temporary font ...")
@@ -199,14 +191,6 @@ if (reuse_roundedmp != "yes")
   SetWidth(fullwidth)
   CenterInWidth()
 
-  # ---- Hinting
-
-  if (use_autohint == "yes")
-    Print("RoundedM+: Hinting ...")
-    SelectHintingNeeded()
-    AutoHint()
-  endif
-
   # ---- Font generation
 
   Print("JISZ8903: Generating temporary font ...")
@@ -234,6 +218,20 @@ Paste()
 
 Print("code8903: Merging ...")
 MergeFonts("tmp_rounded-mplus-1m-regular.ttf")
+
+# ---- Hinting
+
+if (use_autohint == "yes")
+  Print("code8903: Hinting ...")
+  SelectHintingNeeded()
+  AutoHint()
+else
+  Print("code8903: Removing hints ...")
+  SelectWorthOutputting()
+  ClearHints()
+  ClearInstrs()
+  DontAutoHint()
+endif
 
 # ---- Font generation
 
