@@ -89,14 +89,6 @@ if (reuse_jisz8903 != "yes")
   SelectSingletons(0u0040) # @
   Scale(at_rescale, 100, 0, 0)
 
-  # ---- Weight
-
-  if (use_expandstroke == "yes")
-    Print("JISZ8903: Tweaking weight ...")
-    SelectWorthOutputting()
-    ExpandStroke(weight, 0, 0, 0, 1)
-  endif
-
   # ---- Monospacify
 
   Print("JISZ8903: Monospacifying ...")
@@ -171,13 +163,6 @@ if (reuse_roundedmp != "yes")
   Scale(roundedmp_rescale_ratio)
   Move(0, roundedmp_baseline_offset)
 
-  # ---- Adjust weight
-
-  if (use_expandstroke == "yes")
-    Print("RoundedM+: Adjusting weight ...")
-    ExpandStroke(weight, 0, 0, 0, 1)
-  endif
-
   # ---- Monospacify
 
   Print("RoundedM+: Monospacifying ...")
@@ -218,6 +203,13 @@ Paste()
 
 Print("code8903: Merging ...")
 MergeFonts("tmp_rounded-mplus-1m-regular.ttf")
+
+# ---- Adjust weight
+
+if (use_expandstroke == "yes")
+  Print("code8903: Adjusting weight ...")
+  ExpandStroke(weight, 0, 0, 0, 1)
+endif
 
 # ---- Hinting
 
