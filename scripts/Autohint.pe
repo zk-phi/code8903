@@ -1,0 +1,9 @@
+#!/usr/bin/fontforge -script
+
+Open($1)
+
+Print("Hinting ...")
+SelectHintingNeeded()
+AutoHint()
+
+Generate($2)

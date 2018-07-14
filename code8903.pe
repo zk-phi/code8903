@@ -54,7 +54,7 @@ if (reuse_jisz8903 != "yes")
 
   # ---- Reencode
 
-  Open("JISZ8903-Medium.otf")
+  Open("./fonts/JISZ8903-Medium.otf")
   Reencode("unicode")
 
   # ---- Rescaling
@@ -131,7 +131,7 @@ if (reuse_jisz8903 != "yes")
   # ---- Font Generation
 
   Print("JISZ8903: Generating temporary font ...")
-  Generate("tmp_JISZ8903-Medium.ttf")
+  Generate("./tmp/tmp_JISZ8903-Medium.ttf")
 
   Close()
 
@@ -141,7 +141,7 @@ endif
 
 if (reuse_roundedmp != "yes")
 
-  Open("rounded-mplus-1m-regular.ttf")
+  Open("./fonts/rounded-mplus-1m-regular.ttf")
 
   # ---- Adjust parameters
 
@@ -179,7 +179,7 @@ if (reuse_roundedmp != "yes")
   # ---- Font generation
 
   Print("JISZ8903: Generating temporary font ...")
-  Generate("tmp_rounded-mplus-1m-regular.ttf")
+  Generate("./tmp/tmp_rounded-mplus-1m-regular.ttf")
 
   Close()
 
@@ -191,18 +191,18 @@ endif
 
 Print("code8903: Copying some glyphs ...")
 
-Open("tmp_rounded-mplus-1m-regular.ttf")
+Open("./tmp/tmp_rounded-mplus-1m-regular.ttf")
 SelectSingletons(0u005b, 0u005d, 0u007b, 0u007d)
 Copy()
 
-Open("tmp_JISZ8903-Medium.ttf")
+Open("./tmp/tmp_JISZ8903-Medium.ttf")
 SelectSingletons(0u005b, 0u005d, 0u007b, 0u007d)
 Paste()
 
 # ---- Merge undefined glyphs from RoundedM+ into JISZ8903
 
 Print("code8903: Merging ...")
-MergeFonts("tmp_rounded-mplus-1m-regular.ttf")
+MergeFonts("./tmp/tmp_rounded-mplus-1m-regular.ttf")
 
 # ---- Adjust weight
 
@@ -232,6 +232,6 @@ SelectWorthOutputting()
 RoundToInt()
 SetFontNames("code8903", "code8903", "code8903")
 SetUniqueID(0)
-Generate("code8903-Medium.ttf")
+Generate("./dist/code8903-Medium.ttf")
 
 Close()

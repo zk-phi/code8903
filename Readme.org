@@ -57,8 +57,8 @@ Monaco (参考)
 
    : fontforge code8903.pe
 
-   成功すると =code8903-Medium.ttf= (と中間生成物 =tmp_*= ... こちらは
-   削除して構いません) が生成されます。
+   成功すると =dist= ディレクトリに =code8903-Medium.ttf= (と =tmp= に
+   中間生成物 ... こちらは削除しても構いません) が生成されます。
 
    =ttfautohint= を使わない場合、これで完成になります。
 
@@ -71,9 +71,10 @@ Monaco (参考)
 
    =ttfautohint= でヒンティングを行います。
 
-   : ttfautohint --no-info code8903-Medium.ttf code8903-Medium-Hinted.ttf
+   : ttfautohint --no-info ./dist/code8903-Medium.ttf ./dist/code8903-Medium-Hinted.ttf
 
-   成功すると最終成果物 =code8903-Medium-Hinted.ttf= が生成されます。
+   成功すると =dist= ディレクトリに最終成果物
+   =code8903-Medium-Hinted.ttf= が 生成されます。
 
 * アップデート
 

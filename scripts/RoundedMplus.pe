@@ -1,0 +1,53 @@
+#!/usr/bin/fontforge -script
+
+# common configurations
+halfwidth = 625
+fullwidth = 1250
+
+# roundedmp-specific configurations
+roundedmp_rescale_ratio   = 102
+roundedmp_baseline_offset = 20
+
+# ---- Open
+
+Open($1)
+
+# ---- Adjust parameters
+
+Print("RoundedM+: Adjusting parameters ...")
+SelectWorthOutputting()
+ScaleToEm(800, 200)
+SetOS2Value("WinAscent", 1080)
+SetOS2Value("WinDescent", 120)
+SetOS2Value("HHeadAscent", 958)
+SetOS2Value("HHeadDescent", -203)
+SetOS2Value("HHeadLineGap", 90)
+SetOS2Value("TypoAscent", 800)
+SetOS2Value("TypoDescent", -200)
+SetOS2Value("TypoLineGap", 90)
+
+# ---- Adjust scale and baseline
+
+Print("RoundedM+: Adjusting scale and baseline ...")
+Scale(roundedmp_rescale_ratio)
+Move(0, roundedmp_baseline_offset)
+
+# ---- Monospacify
+
+Print("RoundedM+: Monospacifying ...")
+
+Select(0u0020, 0u007E)          # ASCII
+SetWidth(halfwidth)
+CenterInWidth()
+
+SelectWorthOutputting()
+SelectFewer(0u0020, 0u007E)
+SetWidth(fullwidth)
+CenterInWidth()
+
+# ---- Font generation
+
+Print("RoundedM+: Generating temporary font ...")
+Generate($2)
+
+Close()

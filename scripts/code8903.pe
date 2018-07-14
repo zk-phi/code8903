@@ -1,0 +1,68 @@
+#!/usr/bin/fontforge -script
+
+# Configurations
+weight = 10
+
+# ---- Parse command line args
+
+jisz8903  = ""
+roundedmp = ""
+output    = ""
+
+use_expandstroke = "no"
+
+i = 1
+while (i < $argc)
+  if ($argv[i] == "--expandstroke")
+    use_expandstroke = "yes"
+  elseif (jisz8903 == "")
+    jisz8903 = $argv[i]
+  elseif (roundedmp == "")
+    roundedmp = $argv[i]
+  elseif (output == "")
+    output = $argv[i]
+  endif
+  i = i + 1
+endloop
+
+# ---- Copy some glyphs from RoundedM+ to JISZ8903
+
+Print("code8903: Copying some glyphs ...")
+
+Open(roundedmp)
+SelectSingletons(0u005b, 0u005d, 0u007b, 0u007d)
+Copy()
+
+Open(jisz8903)
+SelectSingletons(0u005b, 0u005d, 0u007b, 0u007d)
+Paste()
+
+# ---- Merge undefined glyphs from RoundedM+ into JISZ8903
+
+Print("code8903: Merging ...")
+MergeFonts(roundedmp)
+
+# ---- Adjust weight
+
+if (use_expandstroke == "yes")
+  SelectWorthOutputting()
+  Print("code8903: Adjusting weight ...")
+  ExpandStroke(weight, 0, 0, 0, 1)
+endif
+
+# ---- Remove hints
+
+Print("code8903: Removing old hints ...")
+SelectWorthOutputting()
+ClearHints()
+ClearInstrs()
+DontAutoHint()
+
+# ---- Font generation
+
+Print("code8903: Generating the font ...")
+SetFontNames("code8903", "code8903", "code8903")
+SetUniqueID(0)
+Generate(output)
+
+Close()

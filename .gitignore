@@ -1,6 +1,5 @@
-JISZ8903-Medium.otf
-rounded-mplus-1m-regular.ttf
-code8903-Medium.ttf
-code8903-Medium-Hinted.ttf
-tmp_JISZ8903-Medium.ttf
-tmp_rounded-mplus-1m-regular.ttf
+.DS_Store
+fonts/*.otf
+fonts/*.ttf
+tmp/*.ttf
+dist/*.ttf
