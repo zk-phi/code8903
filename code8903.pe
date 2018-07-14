@@ -26,15 +26,15 @@ roundedmp_baseline_offset = 20
 
 # //// Parse command line args ////
 
-use_expandstroke = "yes"
 use_autohint     = "yes"
+use_expandstroke = "no"
 reuse_jisz8903   = "no"
 reuse_roundedmp  = "no"
 
 i = 1
 while (i < $argc)
-  if ($argv[i] == "--no-expandstroke")
-    use_expandstroke = "no"
+  if ($argv[i] == "--expandstroke")
+    use_expandstroke = "yes"
   endif
   if ($argv[i] == "--no-autohint")
     use_autohint = "no"
