@@ -28,9 +28,9 @@ Monaco (参考)
 という外部ツールを使う方法があります。 =ttfautohint= の方が高速でやや
 クオリティも高い気がするので、自分はそちらを使っています。
 
-生成方法：
+** 生成方法 (=ttfautohint= を使う場合)：
 
-1. =fontforge=, =ttfautohint= (任意) をインストール
+1. =fontforge=, =ttfautohint= をインストール
 
    Mac の場合は Homebrew で入ります。
 
@@ -39,9 +39,6 @@ Monaco (参考)
    Windows の場合は手動で公式からインストーラをダウンロードしてインス
    トール＆ PATH を通すか、 Bash on Windows から =apt-get= でも入ると
    思います (試せていないので、ごめんなさい)。
-
-   ヒンティングに =ttfautohint= を使わない場合は、 =fontforge= のみの
-   インストールでかまいません。
 
 2. 機械彫刻用標準文字フォントをダウンロード
 
@@ -53,28 +50,19 @@ Monaco (参考)
    自家製 Rounded M+ フォントを公式からダウンロードして、
    =rounded-mplus-1m-regular.ttf= をこのディレクトリにコピーします。
 
-4. スクリプトを実行
+5. スクリプトを実行
 
-   : fontforge code8903.pe
+   : make
 
    成功すると =dist= ディレクトリに =code8903-Medium.ttf= (と =tmp= に
    中間生成物 ... こちらは削除しても構いません) が生成されます。
 
-   =ttfautohint= を使わない場合、これで完成になります。
+** 生成方法 (=ttfautohint= を使わない場合)：
 
-   ※ 後で =ttfautohint= でヒンティングを行う場合、 =fontforge= による
-   ヒンティングはスキップすることもできます (その方が高速です)
+上の生成方法のステップ 5 (=make=) の前に =Makefile= の先頭から４行のコ
+メントアウトを編集して、 =HINTER= に =fontforge= を設定します。
 
-   : fontforge code8903.pe --no-autohint
-
-5. =ttfautohint= でヒンティング情報を生成 (任意)
-
-   =ttfautohint= でヒンティングを行います。
-
-   : ttfautohint --no-info ./dist/code8903-Medium.ttf ./dist/code8903-Medium-Hinted.ttf
-
-   成功すると =dist= ディレクトリに最終成果物
-   =code8903-Medium-Hinted.ttf= が 生成されます。
+ステップ 1 での =ttfautohint= のインストールは不要です。
 
 * アップデート
 
@@ -93,36 +81,6 @@ Monaco (参考)
 
    でできました (パスワードを訊かれます)。
 
-* オプション
+* その他のオプション
 
-- =--no-autohint=
-
-  fontforge の機能を利用したヒンティングをスキップします。
-
-  =ttfautohint= など他のツールを使って、あるいは手動でヒンティングを行
-  う場合に使います。
-
-- =--expandstroke=
-
-  文字を均一にわずかに太らせます。これによって：
-
-  - 機械彫刻用標準文字に元から含まれている字形と Rounded M+ から合成し
-    た字形との太さの違いを吸収する
-
-  - コントラスト低めのカラースキーム・小さめのフォントサイズに設定され
-    てもある程度はっきり視認できる
-
-  ようになりますが、これによって「本来の」字形からはやや離れてしまいま
-  す。
-
-- =--reuse-roundedmp=
-
-  中間ファイル =tmp_rounded-mplus-1m-regular.ttf= の生成をスキップして、
-  再利用します。すでに一度ビルドしていて、JISZ8903 由来の字形だけを更
-  新したい場合に使います。
-
-- =--reuse-jisz8903=
-
-  中間ファイル =tmp_JISZ8903-Medium.ttf= の生成をスキップして、再利用
-  します。すでに一度ビルドしていて、Rounded M+ 由来の字形だけを更新し
-  たい場合に使います。
+=Makefile= を参照してください。
