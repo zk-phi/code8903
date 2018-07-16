@@ -22,10 +22,60 @@ r_kerning_offset        = 35
 j_kerning_offset        = -50
 one_kerning_offset      = -25
 
+# ---- Parse command line args
+
+input  = ""
+output = ""
+
+use_ss01 = "no"
+use_ss02 = "no"
+
+i = 1
+while (i < $argc)
+  if ($argv[i] == "--ss01")
+    use_ss01 = "yes"
+  elseif ($argv[i] == "--ss02")
+    use_ss02 = "yes"
+  elseif (input == "")
+    input = $argv[i]
+  elseif (output == "")
+    output = $argv[i]
+  endif
+  i = i + 1
+endloop
+
 # ---- Reencode
 
-Open($1)
+Open(input)
 Reencode("unicode")
+
+# ---- Apply style sets
+
+if (use_ss01 == "yes")
+  Print("JISZ8903: Applying the style set 01 ...")
+  SelectByPosSub("'ss01' Style Set 1 lookup 10 subtable", 1)
+  foreach
+    dist = $selection
+    gsub = GetPosSub("'ss01' Style Set 1 lookup 10 subtable")
+    SelectSingletons(gsub[0][2])
+    Copy()
+    Select(dist)
+    Paste()
+  endloop
+endif
+
+if (use_ss02 == "yes")
+  Print("JISZ8903: Applying the style set 01 ...")
+  SelectByPosSub("'ss02' Style Set 2 lookup 9 subtable", 1)
+  foreach
+    dist = $selection
+    gsub = GetPosSub("'ss02' Style Set 2 lookup 9 subtable")
+    SelectSingletons(gsub[0][2])
+    Copy()
+    Select(dist)
+    Paste()
+  endloop
+endif
 
 # ---- Rescaling
 
@@ -101,6 +151,6 @@ SetWidth(halfwidth)
 # ---- Font Generation
 
 Print("JISZ8903: Generating temporary font ...")
-Generate($2)
+Generate(output)
 
 Close()
