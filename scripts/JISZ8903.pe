@@ -65,7 +65,7 @@ if (use_ss01 == "yes")
 endif
 
 if (use_ss02 == "yes")
-  Print("JISZ8903: Applying the style set 01 ...")
+  Print("JISZ8903: Applying the style set 02 ...")
   SelectByPosSub("'ss02' Style Set 2 lookup 9 subtable", 1)
   foreach
     dist = $selection
