@@ -11,7 +11,8 @@ MERGEOPTS = # Do not specify any options
 
 # ---- OUTPUT FILENAMES
 SOURCE_JISZ8903  = ./fonts/JISZ8903-Medium.otf
-SOURCE_ROUNDEDMP = ./fonts/rounded-mplus-1m-regular.ttf
+# SOURCE_ROUNDEDMP = ./fonts/rounded-mplus-1m-regular.ttf
+SOURCE_ROUNDEDMP = ./fonts/ryakFewRoundedSansserifR.ttf
 TMP_JISZ8903     = ./tmp/JISZ8903-Medium_monospaced.ttf
 TMP_ROUNDEDMP    = ./tmp/rounded-mplus-1m-regular_adjusted.ttf
 UNHINTED_OUTPUT  = ./tmp/code8903-Medium_unhinted.ttf
