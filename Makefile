@@ -4,11 +4,9 @@ HINTER = ttfautohint --no-info # Use ttfautohint (fast fuzzy hinting, requires a
 # HINTER = cp # Skip hinting
 
 # ---- OPTIONS
-JISZ8903OPTS = # Do not specify any options
-# JISZ8903OPTS = --ss01 --ss02 # Enable style sets
-MERGEOPTS = # Do not specify any options
-# MERGEOPTS = --expandstroke 10 # Enable stroke expansion (emboleden a bit)
-# MERGEOPTS = --visiblespace # Enable visible zenkaku space
+JISZ8903OPTS  =
+ROUNDEDMPOPTS =
+MERGEOPTS     =
 
 # ---- OUTPUT FILENAMES
 SOURCE_JISZ8903  = ./fonts/JISZ8903-Medium.otf
@@ -31,7 +29,7 @@ $(TMP_JISZ8903): ./scripts/JISZ8903.pe $(SOURCE_JISZ8903)
 	fontforge ./scripts/JISZ8903.pe $(JISZ8903OPTS) $(SOURCE_JISZ8903) $(TMP_JISZ8903)
 
 $(TMP_ROUNDEDMP): ./scripts/RoundedMplus.pe $(SOURCE_ROUNDEDMP)
-	fontforge ./scripts/RoundedMplus.pe $(SOURCE_ROUNDEDMP) $(TMP_ROUNDEDMP)
+	fontforge ./scripts/RoundedMplus.pe $(ROUNDEDMPOPTS) $(SOURCE_ROUNDEDMP) $(TMP_ROUNDEDMP)
 
 clean:
 	rm ./tmp/*.ttf
