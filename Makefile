@@ -7,7 +7,8 @@ HINTER = ttfautohint --no-info # Use ttfautohint (fast fuzzy hinting, requires a
 JISZ8903OPTS = # Do not specify any options
 # JISZ8903OPTS = --ss01 --ss02 # Enable style sets
 MERGEOPTS = # Do not specify any options
-# MERGEOPTS = --expandstroke # Enable stroke expansion (emboleden a bit)
+# MERGEOPTS = --expandstroke 10 # Enable stroke expansion (emboleden a bit)
+# MERGEOPTS = --visiblespace # Enable visible zenkaku space
 
 # ---- OUTPUT FILENAMES
 SOURCE_JISZ8903  = ./fonts/JISZ8903-Medium.otf

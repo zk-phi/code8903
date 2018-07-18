@@ -1,8 +1,5 @@
 #!/usr/bin/fontforge -script
 
-# Configurations
-weight = 10
-
 # ---- Parse command line args
 
 jisz8903  = ""
@@ -10,11 +7,14 @@ roundedmp = ""
 output    = ""
 
 use_expandstroke = "no"
+weight           = 10
 
 i = 1
 while (i < $argc)
   if ($argv[i] == "--expandstroke")
     use_expandstroke = "yes"
+    i = i + 1
+    weight = Strtol($argv[i])
   elseif (jisz8903 == "")
     jisz8903 = $argv[i]
   elseif (roundedmp == "")
