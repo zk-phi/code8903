@@ -13,6 +13,7 @@ output    = ""
 use_expandstroke = "no"
 weight           = 10
 use_dottedzero   = "yes"
+use_visiblespace = "no"
 
 i = 1
 while (i < $argc)
@@ -20,6 +21,8 @@ while (i < $argc)
     use_expandstroke = "yes"
     i = i + 1
     weight = Strtol($argv[i])
+  elseif ($argv[i] == "--visiblespace")
+    use_visiblespace = "yes"
   elseif ($argv[i] == "--no-dottedzero")
     use_dottedzero = "no"
   elseif (jisz8903 == "")
@@ -55,6 +58,30 @@ if (use_expandstroke == "yes")
   SelectWorthOutputting()
   Print("code8903: Adjusting weight ...")
   ExpandStroke(weight, 0, 0, 0, 1)
+  RoundToInt()
+  RemoveOverlap()
+  RoundToInt()
+endif
+
+# ---- Zenkaku space
+
+if (use_visiblespace == "yes")
+  Print("code8903: Creating zenkaku space glyph ...")
+
+  # ballot box (☐)
+  Select(0u2610)
+  Copy()
+  Select(0u3000)
+  Paste()
+
+  # heavy greek cross (✚)
+  Select(0u271a)
+  Copy()
+  Select(0u3000)
+  PasteInto()
+
+  OverlapIntersect()
+
   RoundToInt()
   RemoveOverlap()
   RoundToInt()
