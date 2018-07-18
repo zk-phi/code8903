@@ -10,19 +10,13 @@ jisz8903  = ""
 roundedmp = ""
 output    = ""
 
-weight           = 10
-use_expandstroke = "no"
 use_mplusglyphs  = "yes"
 use_dottedzero   = "yes"
 use_visiblespace = "no"
 
 i = 1
 while (i < $argc)
-  if ($argv[i] == "--expandstroke")
-    use_expandstroke = "yes"
-    i = i + 1
-    weight = Strtol($argv[i])
-  elseif ($argv[i] == "--visiblespace")
+  if ($argv[i] == "--visiblespace")
     use_visiblespace = "yes"
   elseif ($argv[i] == "--no-dottedzero")
     use_dottedzero = "no"
@@ -65,17 +59,6 @@ endif
 
 Print("code8903: Merging ...")
 MergeFonts(roundedmp)
-
-# ---- Adjust weight
-
-if (use_expandstroke == "yes")
-  SelectWorthOutputting()
-  Print("code8903: Adjusting weight ...")
-  ExpandStroke(weight, 0, 0, 0, 1)
-  RoundToInt()
-  RemoveOverlap()
-  RoundToInt()
-endif
 
 # ---- Zenkaku space
 

@@ -8,9 +8,31 @@ fullwidth = 1250
 roundedmp_rescale_ratio   = 102
 roundedmp_baseline_offset = 20
 
+# ---- Parse command line args
+
+input  = ""
+output = ""
+
+weight = 10
+use_expandstroke = "no"
+
+i = 1
+while (i < $argc)
+  if ($argv[i] == "--expandstroke")
+    use_expandstroke = "yes"
+    i = i + 1
+    weight = Strtol($argv[i])
+  elseif (input == "")
+    input = $argv[i]
+  elseif (output == "")
+    output = $argv[i]
+  endif
+  i = i + 1
+endloop
+
 # ---- Open
 
-Open($1)
+Open(input)
 SelectWorthOutputting()
 ClearInstrs()
 UnlinkReference()
@@ -35,6 +57,17 @@ Print("RoundedM+: Adjusting scale and baseline ...")
 Scale(roundedmp_rescale_ratio)
 Move(0, roundedmp_baseline_offset)
 
+# ---- Adjust weight
+
+if (use_expandstroke == "yes")
+  SelectWorthOutputting()
+  Print("RoundedM+: Adjusting weight ...")
+  ExpandStroke(weight, 0, 0, 0, 1)
+  RoundToInt()
+  RemoveOverlap()
+  RoundToInt()
+endif
+
 # ---- Monospacify
 
 Print("RoundedM+: Monospacifying ...")
@@ -51,6 +84,6 @@ CenterInWidth()
 # ---- Font generation
 
 Print("RoundedM+: Generating temporary font ...")
-Generate($2)
+Generate(output)
 
 Close()
