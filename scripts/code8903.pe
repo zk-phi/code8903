@@ -10,8 +10,9 @@ jisz8903  = ""
 roundedmp = ""
 output    = ""
 
-use_expandstroke = "no"
 weight           = 10
+use_expandstroke = "no"
+use_mplusglyphs  = "yes"
 use_dottedzero   = "yes"
 use_visiblespace = "no"
 
@@ -25,6 +26,8 @@ while (i < $argc)
     use_visiblespace = "yes"
   elseif ($argv[i] == "--no-dottedzero")
     use_dottedzero = "no"
+  elseif ($argv[i] == "--no-mplusglyphs")
+    use_mplusglyphs = "no"
   elseif (jisz8903 == "")
     jisz8903 = $argv[i]
   elseif (roundedmp == "")
@@ -35,17 +38,28 @@ while (i < $argc)
   i = i + 1
 endloop
 
-# ---- Copy some glyphs from RoundedM+ to JISZ8903
+# ---- Open JISZ8903 and copy some glyphs from RoundedM+
 
-Print("code8903: Copying some glyphs ...")
+if (use_mplusglyphs == "yes")
+  Print("code8903: Copying some glyphs from RoundedM+ ...")
 
-Open(roundedmp)
-SelectSingletons(0u005b, 0u005d, 0u007b, 0u007d)
-Copy()
+  Open(roundedmp)
+  SelectSingletons(0u005b, 0u005d, 0u0061, 0u007b, 0u007d) # [, ], a, {, }
+  Copy()
 
-Open(jisz8903)
-SelectSingletons(0u005b, 0u005d, 0u007b, 0u007d)
-Paste()
+  Open(jisz8903)
+  SelectSingletons(0u005b, 0u005d, 0u0061, 0u007b, 0u007d)
+  Paste()
+
+  SelectSingletons(0u005b, 0u005d, 0u007b, 0u007d)
+  Move(0, -12)
+
+  SelectSingletons(0u0061)
+  Scale(100, 108)
+  Move(0, 12)
+else
+  Open(jisz8903)
+endif
 
 # ---- Merge undefined glyphs from RoundedM+ into JISZ8903
 
