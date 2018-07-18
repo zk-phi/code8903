@@ -32,3 +32,7 @@ $(TMP_JISZ8903): ./scripts/JISZ8903.pe $(SOURCE_JISZ8903)
 
 $(TMP_ROUNDEDMP): ./scripts/RoundedMplus.pe $(SOURCE_ROUNDEDMP)
 	fontforge ./scripts/RoundedMplus.pe $(SOURCE_ROUNDEDMP) $(TMP_ROUNDEDMP)
+
+clean:
+	rm ./tmp/*.ttf
+	rm ./dist/*.ttf
