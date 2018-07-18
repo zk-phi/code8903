@@ -48,6 +48,9 @@ if (use_expandstroke == "yes")
   SelectWorthOutputting()
   Print("code8903: Adjusting weight ...")
   ExpandStroke(weight, 0, 0, 0, 1)
+  RoundToInt()
+  RemoveOverlap()
+  RoundToInt()
 endif
 
 # ---- Remove hints
