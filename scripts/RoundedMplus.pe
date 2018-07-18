@@ -11,6 +11,9 @@ roundedmp_baseline_offset = 20
 # ---- Open
 
 Open($1)
+SelectWorthOutputting()
+ClearInstrs()
+UnlinkReference()
 
 # ---- Adjust parameters
 

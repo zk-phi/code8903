@@ -55,7 +55,6 @@ endif
 Print("code8903: Removing old hints ...")
 SelectWorthOutputting()
 ClearHints()
-ClearInstrs()
 DontAutoHint()
 
 # ---- Font generation

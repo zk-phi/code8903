@@ -44,10 +44,13 @@ while (i < $argc)
   i = i + 1
 endloop
 
-# ---- Reencode
+# ---- Open
 
 Open(input)
 Reencode("unicode")
+SelectWorthOutputting()
+ClearInstrs()
+UnlinkReference()
 
 # ---- Apply style sets
 
