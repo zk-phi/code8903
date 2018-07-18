@@ -1,12 +1,7 @@
 #!/usr/bin/fontforge -script
 
-# common configurations
 halfwidth = 625
 fullwidth = 1250
-
-# roundedmp-specific configurations
-roundedmp_rescale_ratio   = 102
-roundedmp_baseline_offset = 20
 
 # ---- Parse command line args
 
@@ -54,8 +49,8 @@ SetOS2Value("TypoLineGap", 90)
 # ---- Adjust scale and baseline
 
 Print("RoundedM+: Adjusting scale and baseline ...")
-Scale(roundedmp_rescale_ratio)
-Move(0, roundedmp_baseline_offset)
+Scale(102)
+Move(0, 20)
 
 # ---- Adjust weight
 

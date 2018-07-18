@@ -1,26 +1,7 @@
 #!/usr/bin/fontforge -script
 
-# common configurations
 halfwidth = 625
 fullwidth = 1250
-
-# rescale ratios
-upper_rescale          = 85
-upper_l_extra_rescale  = 95
-upper_mw_extra_rescale = 90
-lower_mw_rescale       = 85
-amp_rescale            = 85
-at_rescale             = 70
-perc_rescale           = 80
-dollar_rescale         = 80
-question_rescale       = 85
-
-# kerning offsets
-ja_punct_kerning_offset = -400
-l_kerning_offset        = 25
-r_kerning_offset        = 35
-j_kerning_offset        = -50
-one_kerning_offset      = -25
 
 # ---- Parse command line args
 
@@ -92,31 +73,31 @@ Print("JISZ8903: Rescaling some glyphs ...")
 
 Select(0u0030, 0u0039, 0u0041, 0u005A) # 0-9, A-Z
 SelectFewer(0u0049)                    # I
-Scale(upper_rescale, 100, 0, 0)
+Scale(85, 100, 0, 0)
 
 Select(0u004C) # L
-Scale(upper_l_extra_rescale, 100, 0, 0)
+Scale(95, 100, 0, 0)
 
 Select(0u004D, 0u0057) # M, W
-Scale(upper_mw_extra_rescale, 100, 0, 0)
+Scale(90, 100, 0, 0)
 
 SelectSingletons(0u006D, 0u0077) # m, w
-Scale(lower_mw_rescale, 100, 0, 0)
+Scale(85, 100, 0, 0)
 
 SelectSingletons(0u0025) # %
-Scale(perc_rescale, 100, 0, 0)
+Scale(80, 100, 0, 0)
 
 SelectSingletons(0u0024) # $
-Scale(dollar_rescale, 100, 0, 0)
+Scale(80, 100, 0, 0)
 
 SelectSingletons(0u003F) # ?
-Scale(question_rescale, 100, 0, 0)
+Scale(85, 100, 0, 0)
 
 SelectSingletons(0u0026) # &
-Scale(amp_rescale, 100, 0, 0)
+Scale(85, 100, 0, 0)
 
 SelectSingletons(0u0040) # @
-Scale(at_rescale, 100, 0, 0)
+Scale(70, 100, 0, 0)
 
 # ---- Adjust weight
 
@@ -149,23 +130,23 @@ CenterInWidth()
 Print("JISZ8903: Positioning glyphs ...")
 
 SelectSingletons(0u3001, 0u3002) # "、。"
-Move(ja_punct_kerning_offset, 0)
+Move(-400, 0)
 SetWidth(fullwidth)
 
 SelectSingletons(0u006c) # "l"
-Move(l_kerning_offset, 0)
+Move(25, 0)
 SetWidth(halfwidth)
 
 SelectSingletons(0u0072) # "r"
-Move(r_kerning_offset, 0)
+Move(35, 0)
 SetWidth(halfwidth)
 
 SelectSingletons(0u006A) # "j"
-Move(j_kerning_offset, 0)
+Move(-50, 0)
 SetWidth(halfwidth)
 
 SelectSingletons(0u0031) # "1"
-Move(one_kerning_offset, 0)
+Move(-25, 0)
 SetWidth(halfwidth)
 
 # ---- Font Generation

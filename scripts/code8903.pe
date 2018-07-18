@@ -1,6 +1,5 @@
 #!/usr/bin/fontforge -script
 
-# common configurations
 halfwidth = 625
 fullwidth = 1250
 
