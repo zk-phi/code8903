@@ -1,5 +1,9 @@
 #!/usr/bin/fontforge -script
 
+# common configurations
+halfwidth = 625
+fullwidth = 1250
+
 # ---- Parse command line args
 
 jisz8903  = ""
@@ -8,6 +12,7 @@ output    = ""
 
 use_expandstroke = "no"
 weight           = 10
+use_dottedzero   = "yes"
 
 i = 1
 while (i < $argc)
@@ -15,6 +20,8 @@ while (i < $argc)
     use_expandstroke = "yes"
     i = i + 1
     weight = Strtol($argv[i])
+  elseif ($argv[i] == "--no-dottedzero")
+    use_dottedzero = "no"
   elseif (jisz8903 == "")
     jisz8903 = $argv[i]
   elseif (roundedmp == "")
@@ -48,6 +55,22 @@ if (use_expandstroke == "yes")
   SelectWorthOutputting()
   Print("code8903: Adjusting weight ...")
   ExpandStroke(weight, 0, 0, 0, 1)
+  RoundToInt()
+  RemoveOverlap()
+  RoundToInt()
+endif
+
+# ---- Dotted zero
+
+if (use_dottedzero == "yes")
+  Print("code8903: Adding dot to the zero glyph ...")
+
+  # middle dot (·)
+  Select(0u00b7)
+  Copy()
+  Select(0u0030)
+  PasteWithOffset(-halfwidth / 2, 75)
+
   RoundToInt()
   RemoveOverlap()
   RoundToInt()
