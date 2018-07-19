@@ -11,12 +11,15 @@ output    = ""
 
 use_mplusglyphs  = "yes"
 use_dottedzero   = "yes"
+use_moreryakuji  = "no"
 use_visiblespace = "no"
 
 i = 1
 while (i < $argc)
   if ($argv[i] == "--visiblespace")
     use_visiblespace = "yes"
+  elseif ($argv[i] == "--prefer-ryakuji")
+    use_moreryakuji = "yes"
   elseif ($argv[i] == "--no-dottedzero")
     use_dottedzero = "no"
   elseif ($argv[i] == "--no-mplusglyphs")
@@ -38,10 +41,29 @@ if (use_mplusglyphs == "yes")
 
   Open(roundedmp)
   SelectSingletons(0u005b, 0u005d, 0u0061, 0u007b, 0u007d) # [, ], a, {, }
+  if (use_moreryakuji == "yes")
+    # 個, 寮, 摩, 歴, 風, 魔
+    SelectMoreSingletons(0u500b, 0u5bee, 0u6469, 0u6b74, 0u98a8, 0u9b54)
+    # 働, 卒, 喜, 幅, 御, 曜, 点, 潟, 簿, 臨
+    SelectMoreSingletons(0u50cd, 0u5352, 0u559c, 0u5e45, 0u5fa1, 0u66dc, 0u70b9, 0u6f5f, 0u7c3f, 0u81e8)
+    # 門, 問, 閉, 開, 間, 関, 闘, 聞
+    SelectMoreSingletons(0u9580, 0u554f, 0u9589, 0u958b, 0u9593, 0u95a2, 0u95d8, 0u805e)
+    # 雷, 霊, 露
+    SelectMoreSingletons(0u96f7, 0u970a, 0u9732)
+    # 品, 操 ... 微妙
+    SelectMoreSingletons(0u54c1, 0u64cd)
+  endif
   Copy()
 
   Open(jisz8903)
   SelectSingletons(0u005b, 0u005d, 0u0061, 0u007b, 0u007d)
+  if (use_moreryakuji == "yes")
+    SelectMoreSingletons(0u500b, 0u5bee, 0u6469, 0u6b74, 0u98a8, 0u9b54)
+    SelectMoreSingletons(0u50cd, 0u5352, 0u559c, 0u5e45, 0u5fa1, 0u66dc, 0u70b9, 0u6f5f, 0u7c3f, 0u81e8)
+    SelectMoreSingletons(0u9580, 0u554f, 0u9589, 0u958b, 0u9593, 0u95a2, 0u95d8, 0u805e)
+    SelectMoreSingletons(0u96f7, 0u970a, 0u9732)
+    SelectMoreSingletons(0u54c1, 0u64cd)
+  endif
   Paste()
 
   SelectSingletons(0u005b, 0u005d, 0u007b, 0u007d)
