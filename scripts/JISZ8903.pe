@@ -74,6 +74,11 @@ Print("JISZ8903: Rescaling some glyphs ...")
 Select(0u0030, 0u0039, 0u0041, 0u005A) # 0-9, A-Z
 SelectFewer(0u0049)                    # I
 Scale(85, 100, 0, 0)
+Copy()
+PasteWithOffset(15, 0)
+RoundToInt()
+RemoveOverlap()
+RoundToInt()
 
 Select(0u004C) # L
 Scale(95, 100, 0, 0)
