@@ -18,6 +18,9 @@ UNHINTED_OUTPUT  = ./tmp/code8903-Medium_unhinted.ttf
 HINTED_OUTPUT    = ./dist/code8903-Medium.ttf
 
 all: $(HINTED_OUTPUT)
+unhinted: $(UNHINTED_OUTPUT)
+jisz8903: $(TMP_JISZ8903)
+roundedmp: $(TMP_ROUNDEDMP)
 
 $(HINTED_OUTPUT): $(UNHINTED_OUTPUT)
 	$(HINTER) $(UNHINTED_OUTPUT) $(HINTED_OUTPUT)
