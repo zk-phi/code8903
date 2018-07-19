@@ -92,7 +92,12 @@ SelectSingletons(0u006D, 0u0077) # m, w
 Scale(85, 100, 0, 0)
 
 SelectSingletons(0u0025) # %
-Scale(80, 100, 0, 0)
+Scale(70, 100, 0, 0)
+Copy()
+PasteWithOffset(10, 0)
+RoundToInt()
+RemoveOverlap()
+RoundToInt()
 
 SelectSingletons(0u0024) # $
 Scale(80, 100, 0, 0)
