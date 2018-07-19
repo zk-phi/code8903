@@ -8,15 +8,17 @@ fullwidth = 1250
 input  = ""
 output = ""
 
-weight = 10
-use_expandstroke = "no"
+expandstroke = 0
+doubleprint  = 0
 
 i = 1
 while (i < $argc)
   if ($argv[i] == "--expandstroke")
-    use_expandstroke = "yes"
     i = i + 1
-    weight = Strtol($argv[i])
+    expandstroke = Strtol($argv[i])
+  elseif ($argv[i] == "--doubleprint")
+    i = i + 1
+    doubleprint = Strtol($argv[i])
   elseif (input == "")
     input = $argv[i]
   elseif (output == "")
@@ -54,10 +56,27 @@ Move(0, 20)
 
 # ---- Adjust weight
 
-if (use_expandstroke == "yes")
+if (expandstroke != 0)
+  Print("RoundedM+: Adjusting weight by expanding stroke ...")
   SelectWorthOutputting()
-  Print("RoundedM+: Adjusting weight ...")
-  ExpandStroke(weight, 0, 0, 0, 1)
+  ExpandStroke(expandstroke, 0, 0, 0, 1)
+  RoundToInt()
+  RemoveOverlap()
+  RoundToInt()
+endif
+
+if (doubleprint != 0)
+  Print("RoundedM+: Adjusting weight by double printing ...")
+  SelectWorthOutputting()
+  Print("pass 1 ...")
+  Copy()
+  PasteWithOffset(doubleprint, 0)
+  RoundToInt()
+  RemoveOverlap()
+  RoundToInt()
+  Print("pass 2 ...")
+  Copy()
+  PasteWithOffset(0, doubleprint)
   RoundToInt()
   RemoveOverlap()
   RoundToInt()
