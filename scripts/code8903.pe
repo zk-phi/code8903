@@ -34,7 +34,7 @@ while (i < $argc)
   i = i + 1
 endloop
 
-# ---- Open JISZ8903 and copy some glyphs from RoundedM+
+# ---- Open JISZ8903 and copy some glyphs from RoundedM+ before merging
 
 if (use_mplusglyphs == "yes")
   Print("code8903: Copying some glyphs from RoundedM+ ...")

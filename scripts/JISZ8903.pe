@@ -69,7 +69,7 @@ if (use_ss02 == "yes")
   endloop
 endif
 
-# ---- Rescaling
+# ---- Make wide half-width characters narrower
 
 Print("JISZ8903: Rescaling some glyphs ...")
 
