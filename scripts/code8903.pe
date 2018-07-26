@@ -50,8 +50,8 @@ if (use_mplusglyphs == "yes")
     SelectMoreSingletons(0u9580, 0u554f, 0u9589, 0u958b, 0u9593, 0u95a2, 0u95d8, 0u805e)
     # 雷, 霊, 露
     SelectMoreSingletons(0u96f7, 0u970a, 0u9732)
-    # 品, 操 ... 微妙
-    SelectMoreSingletons(0u54c1, 0u64cd)
+    # 品, 操, 工 ... 微妙
+    SelectMoreSingletons(0u54c1, 0u64cd, 0u5de5)
   endif
   Copy()
 
@@ -62,7 +62,7 @@ if (use_mplusglyphs == "yes")
     SelectMoreSingletons(0u50cd, 0u5352, 0u559c, 0u5e45, 0u5fa1, 0u66dc, 0u70b9, 0u6f5f, 0u7c3f, 0u81e8)
     SelectMoreSingletons(0u9580, 0u554f, 0u9589, 0u958b, 0u9593, 0u95a2, 0u95d8, 0u805e)
     SelectMoreSingletons(0u96f7, 0u970a, 0u9732)
-    SelectMoreSingletons(0u54c1, 0u64cd)
+    SelectMoreSingletons(0u54c1, 0u64cd, 0u5de5)
   endif
   Paste()
 
