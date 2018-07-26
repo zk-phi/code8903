@@ -11,6 +11,7 @@ output    = ""
 
 use_mplusglyphs  = "yes"
 use_dottedzero   = "yes"
+use_largeast     = "yes"
 use_moreryakuji  = "no"
 use_visiblespace = "no"
 
@@ -22,6 +23,8 @@ while (i < $argc)
     use_moreryakuji = "yes"
   elseif ($argv[i] == "--no-dottedzero")
     use_dottedzero = "no"
+  elseif ($argv[i] == "--no-largeast")
+    use_largeast = "no"
   elseif ($argv[i] == "--no-mplusglyphs")
     use_mplusglyphs = "no"
   elseif (jisz8903 == "")
@@ -115,6 +118,25 @@ if (use_dottedzero == "yes")
   Copy()
   Select(0u0030)
   PasteWithOffset(-halfwidth / 2, 75)
+
+  RoundToInt()
+  RemoveOverlap()
+  RoundToInt()
+endif
+
+# ---- Large ast
+
+if (use_largeast == "yes")
+  Print("code8903: Creating large ast glyph ...")
+
+  SelectSingletons(0uFF0A)        # ＊
+  Copy()
+  SelectSingletons(0u002A)        # *
+  Paste()
+
+  Scale(90, 100)
+  SetWidth(halfwidth)
+  CenterInWidth()
 
   RoundToInt()
   RemoveOverlap()
