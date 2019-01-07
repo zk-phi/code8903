@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <style>
+@font-face { font-family: 'preflight'; src: url('dist/code8903-Medium.ttf') format('truetype'); }
+textarea { font-family: 'preflight'; font-size: large; }
+#preview { font-family: 'preflight'; font-size: 400px; line-height: 1; margin: 0; }
+    </style>
+    <script>
+function updatePreview (val) {
+    document.getElementById('preview').innerText = val;
+}
+    </script>
+  </head>
+  <body>
+    <textarea cols=50 rows=3 onchange="updatePreview(this.value);">(@$)</textarea>
+    <pre id="preview">(@$)</pre>
+  </body>
+</html>
