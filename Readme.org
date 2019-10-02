@@ -43,12 +43,13 @@ Monaco (参考)
 2. 機械彫刻用標準文字フォントをダウンロード
 
    機械彫刻用標準文字フォントを公式からダウンロードして、
-   =KikaiChokokuJIS-Md.otf= をこのディレクトリにコピーします。
+   =KikaiChokokuJIS-Md.otf= を =fonts= ディレクトリにコピーします。
 
 3. Rounded M+ をダウンロード
 
    自家製 Rounded M+ フォントを公式からダウンロードして、
-   =rounded-mplus-1m-regular.ttf= をこのディレクトリにコピーします。
+   =rounded-mplus-1m-regular.ttf= を =fonts= ディレクトリにコピーしま
+   す。
 
 5. スクリプトを実行
 
@@ -79,7 +80,8 @@ Monaco (参考)
 
    : sudo atsutil databases -remove
 
-   でできました (パスワードを訊かれます)。
+   でできました (パスワードを訊かれます)。最近はその後、フォントキャッ
+   シュの再構築に再起動が必要なようです。
 
 * カスタマイズ
 
