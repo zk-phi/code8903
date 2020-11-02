@@ -45,10 +45,10 @@ UnlinkReference()
 
 if (use_ss01 == "yes")
   Print("JISZ8903: Applying the style set 01 ...")
-  SelectByPosSub("'ss01' Style Set 1 lookup 11 subtable", 1)
+  SelectByPosSub("'ss01' Style Set 1 lookup 10 subtable", 1)
   foreach
     dist = $selection
-    gsub = GetPosSub("'ss01' Style Set 1 lookup 11 subtable")
+    gsub = GetPosSub("'ss01' Style Set 1 lookup 10 subtable")
     SelectSingletons(gsub[0][2])
     Copy()
     Select(dist)
@@ -58,10 +58,10 @@ endif
 
 if (use_ss02 == "yes")
   Print("JISZ8903: Applying the style set 02 ...")
-  SelectByPosSub("'ss02' Style Set 2 lookup 10 subtable", 1)
+  SelectByPosSub("'ss02' Style Set 2 lookup 9 subtable", 1)
   foreach
     dist = $selection
-    gsub = GetPosSub("'ss02' Style Set 2 lookup 10 subtable")
+    gsub = GetPosSub("'ss02' Style Set 2 lookup 9 subtable")
     SelectSingletons(gsub[0][2])
     Copy()
     Select(dist)
